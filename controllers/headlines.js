@@ -13,7 +13,7 @@ module.exports = {
                 articles[i].date = makeDate();
                 articles[i].saved = false;
             }
-            Headline.collection.insertMany(articles, { ordered: false }, function (err, docs) {
+            Headline.collection.insertMany(articles, {ordered: false}, function(err, docs) {
                 cb(err, docs);
             });
         });
@@ -31,9 +31,8 @@ module.exports = {
             });
     },
     update: function (query, cb) {
-        Headline.update({ _id: query._id }, {
+        Headline.update({_id: query._id}, {
             $set: query
-        },
-            {}, cb);
+        }, {}, cb);
     }
 }

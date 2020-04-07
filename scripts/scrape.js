@@ -1,22 +1,23 @@
 // Scrape Script
 
-// Require request and cheerio, making our scrapes possible
-var request = require("request");
+// Require axios and cheerio, making our scrapes possible
+var axios = require("axios");
 var cheerio = require("cheerio");
 
 var scrape = function (cb) {
 
-    request("http://www.nytimes.com", function (err, res, body) {
-
-        var $ = cheerio.load(body);
+ 
+    axios.get("https://www.foxnews.com/").then(function(body) {
+        var $ = cheerio.load(body.data);
 
         var articles = [];
 
-        $(".theme-summary").each(function (i, element) {
+        $(".title").each(function (i, element) {
 
-            var head = $(this).children(".story-heading").text().trim();
-            var sum = $(this).children(".summary").text.trim();
-
+            var head = $(element).children("a").text().trim();
+            var sum = $(element).children("a").attr("href");
+            console.log("log-1" + head)
+            console.log("log-2" + sum)
             if (head && sum) {
                 var headNeat = head.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
                 var sumNeat = sum.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
@@ -29,6 +30,7 @@ var scrape = function (cb) {
             }
         });
         cb(articles);
+        console.log(articles)
     });
 };
 

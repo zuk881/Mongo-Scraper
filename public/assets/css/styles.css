@@ -1,40 +1,55 @@
-html {
-    position: relative;
-    min-height: 100%;
-}
 
 body {
     margin-bottom: 80px;
-    background-image: url("");
-}
-
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 80px;
-    background-color: bisque;
-}
-
-.navbar {
-    margin-bottom: 0;
+    background-color: beige; 
 }
 
 .jumbotron {
-    position: relative;
+    margin-top: 5%;
     width: 100%;
-    height: 500px;
+    height: 400px;
     font-family: "Cormorant SC";
     padding: 0;
-    box-shadow: 10px 5px 20px 2px lightslategray;
+    border: 2px solid gray;
 }
 
-.jumbotron .overlay {
-    background: linear-gradient(gray, black);
-    position: absolute;
-    opacity: .7;
-    z-index: auto;
-    top: 0;
-    left: 0;
-    bottom: 0;
+.card {
+    margin-top: 20px;
+    padding: 0px;  
+}
+
+.card-body {
+    background-color: rgb(115, 149, 218);
+    border: 2px solid gray;
+    border-radius: 0px 0px 7px 7px;
+   
+}
+
+.save {
+    padding: 12px;
+    margin-left: 9px;
+}
+
+.delete {
+    padding: 12px;
+    margin-left: 9px;
+}
+
+.notes {
+    padding: 12px;
+    margin-left: 9px;
+}
+
+.note-delete {
+    padding: 12px;
+    margin-left: 9px;
+}
+
+.card-header {
+
+    border: 2px solid gray;
+}
+
+a {
+    font-weight: 600;
 }

@@ -1,25 +1,28 @@
 // Server Routes
 //==============
 
-// Bring in the Scrape function form our scripts directory
+// Bring in the Scrape function from our scripts directory
 var scrape = require("../scripts/scrape");
 
-// Bring headlines and notes form the controller
+// Bring headlines and notes from the controller
 var headlinesController = require("../controllers/headlines");
 var notesController = require("../controllers/notes");
 
-module.exports = function (router) {
+module.exports = function(router) {
+   
     // This route renders the homepage
     router.get("/", function (req, res) {
         res.render("home");
     });
+    
     // This route renders the saved handlebars page
     router.get("/saved", function (req, res) {
         res.render("saved");
     });
 
-    router.get("/api/fetch", function (req, res) {
-        headlinesController.fetch(function (err, docs) {
+    // Route to bring in new articles
+    router.get("/api/fetch", function(req, res) {
+        headlinesController.fetch(function(err, docs) {
             if (!docs || docs.insertedCount === 0) {
                 res.json({
                     message: "No new articles today. Check back tomorrow!"
@@ -33,7 +36,7 @@ module.exports = function (router) {
         });
     });
 
-    router.get("/api/headlines", function (requ, res) {
+    router.get("/api/headlines", function(req, res) {
         var query = {};
         if (req.query.saved) {
             query = req.query;
@@ -81,5 +84,4 @@ module.exports = function (router) {
             res.json(data);
         });
     });
-
 }
