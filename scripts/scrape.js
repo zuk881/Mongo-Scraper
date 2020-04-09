@@ -7,15 +7,15 @@ var cheerio = require("cheerio");
 var scrape = function (cb) {
 
  
-    axios.get("https://www.foxnews.com/").then(function(body) {
+    axios.get("https://www.washingtonpost.com/").then(function(body) {
         var $ = cheerio.load(body.data);
 
         var articles = [];
 
-        $(".title").each(function (i, element) {
+        $(".headline").each(function (i, element) {
 
-            var head = $(element).children("a").text().trim();
-            var sum = $(element).children("a").attr("href");
+            var head = $(this).children("a").text().trim();
+            var sum = $(this).siblings(".blurb").text().trim();
             console.log("log-1" + head)
             console.log("log-2" + sum)
             if (head && sum) {

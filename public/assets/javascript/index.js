@@ -56,12 +56,14 @@ $(document).ready(function () {
                 "<h3>",
                 article.headline,
                 "<a class='btn btn-success save'>",
-                "Save Article",
+                "Save",
                 "<a/>",
                 "</h3>",
                 "</div>",
                 "<div class='card-body'>",
-                article.summary,
+                "<a>",
+                 article.summary,
+                "</a>",
                 "</div>",
                 "</div>"
             ].join(""));
@@ -74,7 +76,7 @@ $(document).ready(function () {
 
     function renderEmpty() {
         // This function renders some HTML to the page explaining we don't have any articles to view
-        // Using a joined array of HTML string dta because it's easier to read/change than a concatenated string
+        // Using a joined array of HTML string data because it's easier to read/change than a concatenated string
         var emptyAlert =
             $(["<div class='alert alert-warning text-center'>",
                 "<h4>Looks like we don't have any new articles</h4>",

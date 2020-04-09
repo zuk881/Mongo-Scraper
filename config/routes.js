@@ -36,6 +36,7 @@ module.exports = function(router) {
         });
     });
 
+   // Gets all the data from our database
     router.get("/api/headlines", function(req, res) {
         var query = {};
         if (req.query.saved) {
@@ -46,6 +47,7 @@ module.exports = function(router) {
         });
     });
 
+    // Route to delete a specific aritcle
     router.delete("/api/headlines/:id", function (req, res) {
         var query = {};
         query._id = req.params.id;
@@ -54,12 +56,14 @@ module.exports = function(router) {
         });
     });
 
+    // Route to update headlines
     router.patch("/api/headlines", function (req, res) {
         headlinesController.update(req.body, function (err, data) {
             res.json(data);
         });
     });
 
+    // Route to grab all routes associated with an article
     router.get("/api/notes/:headline_id?", function (req, res) {
         var query = {};
         if (req.params.headline_id) {
@@ -71,6 +75,7 @@ module.exports = function(router) {
         });
     });
 
+    // Route to delete a notee associated with an article
     router.delete("/api/notes/:id", function (req, res) {
         var query = {};
         query._id = req.params.id;
@@ -79,6 +84,7 @@ module.exports = function(router) {
         });
     });
 
+    // Route to post new notes to articles
     router.post("/api/notes", function (req, res) {
         notesController.save(req.body, function (data) {
             res.json(data);

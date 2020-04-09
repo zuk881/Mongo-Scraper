@@ -1,4 +1,4 @@
-var makeDate = function () {
+var makeDate = () => {
 
     // Set variable for new date
     var d = new Date();
