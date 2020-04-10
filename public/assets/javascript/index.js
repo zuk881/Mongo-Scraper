@@ -10,10 +10,10 @@ $(document).ready(function () {
     $(document).on("click", ".scrape-new", handleArticleScrape);
 
     // Once the page is ready, run the initPage function to kick things off
-    initPage();
+    kickPage();
 
 
-    function initPage() {
+    function kickPage() {
         // Empty the article container, run an AJAX request for any unsaved headlines
         articleContainer.empty();
         $.get("/api/headlines?saved=false")
@@ -33,21 +33,21 @@ $(document).ready(function () {
     function renderArticles(articles) {
         // This function handles appending HTML containing our articles data to the page
         // We are passed an array of JSON containing all available articles in our database
-        var articlePanels = [];
+        var articleCards = [];
         // We pass each article JSON object to the createPanel function which returns a bootstrap
         // panel with our article data inside
         for (var i = 0; i < articles.length; i++) {
-            articlePanels.push(createPanel(articles[i]));
+            articleCards.push(createCard(articles[i]));
         }
         // Once we have all of the HTML for the articles stored in our articlePanels array,
-        // append them to the articlePanels container
-        articleContainer.append(articlePanels);
+        // append them to the articleCards container
+        articleContainer.append(articleCards);
     }
 
-    function createPanel(article) {
+    function createCard(article) {
         // This function takes in a single JSON object for an article
         // It constructs a JQuery element containing  all of the formatted HTML for the article panel
-        var panel =
+        var card =
             $(["<div class='card'>",
                 "<div class='card-header'>",
                 "<h3>",
@@ -61,17 +61,17 @@ $(document).ready(function () {
                 "<h4>",
                 article.summary,
                 "</h4>",
-                "<a href=>",
-                 article.url,
+                "<a href='" + article.url +" 'target='_blank'>",
+                article.url,
                 "</a>",
                 "</div>",
                 "</div>"
             ].join(""));
         // We attach the article's id to the JQuery element
         // We will use this when trying to figure out which article the user wants to save
-        panel.data("_id", article._id);
-        // We return the constructed panel JQuery element
-        return panel;
+        card.data("_id", article._id);
+        // We return the constructed card element
+        return card;
     }
 
     function renderEmpty() {
@@ -113,7 +113,7 @@ $(document).ready(function () {
                 // Which casts to "true"
                 if (data.ok) {
                     // Run the initPage function again. This will reload the entire list of articles
-                    initPage();
+                    kickPage();
                 }
             });
     };
@@ -125,7 +125,7 @@ $(document).ready(function () {
                 // If we are able to succesfully scrape the news site and compare the articles to those
                 // Already in our collection, re render teh articles on the page
                 // and let the user know how many unique articles we were able to save
-                initPage();
+                kickPage();
                 bootbox.alert("<h3 class='text-center m-top-80'>" + data.message + "<h3>");
             });
     }

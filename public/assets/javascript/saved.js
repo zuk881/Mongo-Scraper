@@ -11,7 +11,7 @@ $(document).ready(function () {
     $(document).on("click", ".btn.note-delete", handleNoteDelete);
 
 
-    function initPage() {
+    function kickPage() {
         // Empty the article container, run an AJAX request for any saved headlines
         articleContainer.empty();
         $.get("/api/headlines?saved=true").then(function (data) {
@@ -29,21 +29,21 @@ $(document).ready(function () {
     function renderArticles(articles) {
         // This function handles appending HTML containing our article data to the page
         // We are passed an array of JSON containing all available articles in our database
-        var articlePanels = [];
+        var articleCard = [];
         // We pass each article JSON object to the createPanel function which returns a bootstrap
         // panwl with our aricle data inside
         for (var i = 0; i < articles.length; i++) {
-            articlePanels.push(createPanel(articles[i]));
+            articleCard.push(createCard(articles[i]));
         }
         // Once we have all of the HTML for the aricles stored on our articlePanesl array,
         // append them to the articlesPanels container
-        articleContainer.append(articlePanels);
+        articleContainer.append(articleCard);
     }
 
-    function createPanel(article) {
+    function createCard(article) {
         // This function takes in a single JSON object for an article
         // It constructs a JQuery element containing  all of the formatted HTML for the article panel
-        var panel =
+        var card =
             $(["<div class='card'>",
                 "<div class='card-header'>",
                 "<h3>",
@@ -55,17 +55,20 @@ $(document).ready(function () {
                 "</h3>",
                 "</div>",
                 "<div class='card-body'>",
-                "<a>",
+                "<h4>",
                 article.summary,
+                "</h4>",
+                "<a href='" + article.url + " 'target='_blank'>",
+                article.url,
                 "</a>",
                 "</div>",
                 "</div>"
             ].join(""));
         // We attach the article's id to the JQuery element
         // We will use this when trying to figure out which article the user wants to save
-        panel.data("_id", article._id);
-        // We return the constructed panel JQuery element
-        return panel;
+        card.data("_id", article._id);
+        // We return the constructed card element
+        return card;
     }
 
     function handleArticleDelete() {
@@ -79,7 +82,7 @@ $(document).ready(function () {
         }).then(function (data) {
             // If this works, run initPage again which will rerender our list of saved aricles
             if (data.ok) {
-                initPage();
+                kickPage();
             }
         });
     }
@@ -211,6 +214,6 @@ $(document).ready(function () {
     }
 
     // InitPage kicks everything off when the page is loaded
-    initPage();
+    kickPage();
 
 });
