@@ -33,21 +33,25 @@ body {
 .save {
     padding: 6px;
     margin-left: 9px;
+    margin: 6px;
 }
 
 .delete {
     padding: 6px;
     margin-left: 9px;
+    margin: 6px;
 }
 
 .notes {
     padding: 6px;
     margin-left: 9px;
+    margin: 6px;
 }
 
 .note-delete {
     padding: 6px;
     margin-left: 9px;
+    margin: 6px;
 }
 
 .card-header {

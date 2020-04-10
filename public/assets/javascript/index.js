@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     // Event listener for scrape new article button
     $(document).on("click", ".scrape-new", handleArticleScrape);
-
+    $(document).on("click", ".btn.delete", handleArticleDelete);
     // Once the page is ready, run the initPage function to kick things off
     kickPage();
 
@@ -55,6 +55,9 @@ $(document).ready(function () {
                 "<a class='btn btn-success save'>",
                 "Save",
                 "<a/>",
+                "<a class='btn btn-danger delete'>",
+                "Delete",
+                "<a/>",
                 "</h3>",
                 "</div>",
                 "<div class='card-body'>",
@@ -93,6 +96,22 @@ $(document).ready(function () {
             ].join(''));
         // Appending this data to the page
         articleContainer.append(emptyAlert);
+    }
+
+    function handleArticleDelete() {
+        // This function handles deleting articles/headlines
+        // We grab the id of the article to delete from the panel element the delete button sits inside
+        var articleToDelete = $(this).parents(".card").data();
+        // Using a delete method here just to be semantic since we are deleting an article/headline
+        $.ajax({
+            method: "DELETE",
+            url: "/api/headlines/" + articleToDelete._id
+        }).then(function (data) {
+            // If this works, run initPage again which will rerender our list of saved aricles
+            if (data.ok) {
+                kickPage();
+            }
+        });
     }
 
     function handleArticleSave() {
