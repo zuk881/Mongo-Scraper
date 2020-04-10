@@ -51,7 +51,7 @@ $(document).ready(function () {
                 "<a class='btn btn-danger delete'>",
                 "Delete",
                 "<a/>",
-                "<a class='btn btn-info notes'>Notes</a>",
+                "<a class='btn btn-success notes'>Notes</a>",
                 "</h3>",
                 "</div>",
                 "<div class='card-body'>",

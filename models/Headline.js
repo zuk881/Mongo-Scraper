@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-
+require('mongoose-type-url');
 var Schema = mongoose.Schema;
 
 var headlineSchema = new Schema ({
@@ -12,6 +12,10 @@ var headlineSchema = new Schema ({
         type: String,
         required: true
     },
+    url: {
+        type: mongoose.SchemaTypes.Url,
+        required: true
+      },
     date: String,
     saved: {
         type: Boolean,

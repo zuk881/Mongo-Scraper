@@ -33,7 +33,6 @@ $(document).ready(function () {
     function renderArticles(articles) {
         // This function handles appending HTML containing our articles data to the page
         // We are passed an array of JSON containing all available articles in our database
-        console.log("render")
         var articlePanels = [];
         // We pass each article JSON object to the createPanel function which returns a bootstrap
         // panel with our article data inside
@@ -43,13 +42,11 @@ $(document).ready(function () {
         // Once we have all of the HTML for the articles stored in our articlePanels array,
         // append them to the articlePanels container
         articleContainer.append(articlePanels);
-
     }
 
     function createPanel(article) {
         // This function takes in a single JSON object for an article
         // It constructs a JQuery element containing  all of the formatted HTML for the article panel
-        console.log("create")
         var panel =
             $(["<div class='card'>",
                 "<div class='card-header'>",
@@ -61,8 +58,11 @@ $(document).ready(function () {
                 "</h3>",
                 "</div>",
                 "<div class='card-body'>",
-                "<a>",
-                 article.summary,
+                "<h4>",
+                article.summary,
+                "</h4>",
+                "<a href=>",
+                 article.url,
                 "</a>",
                 "</div>",
                 "</div>"
@@ -129,5 +129,5 @@ $(document).ready(function () {
                 bootbox.alert("<h3 class='text-center m-top-80'>" + data.message + "<h3>");
             });
     }
-
+  
 });
