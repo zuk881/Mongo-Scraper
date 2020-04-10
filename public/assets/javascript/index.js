@@ -8,7 +8,10 @@ $(document).ready(function () {
 
     // Event listener for scrape new article button
     $(document).on("click", ".scrape-new", handleArticleScrape);
+
+    // Event listener for delete articles on home page
     $(document).on("click", ".btn.delete", handleArticleDelete);
+
     // Once the page is ready, run the initPage function to kick things off
     kickPage();
 
@@ -18,7 +21,7 @@ $(document).ready(function () {
         articleContainer.empty();
         $.get("/api/headlines?saved=false")
             .then(function (data) {
-                console.log(data)
+              
                 //if we have data headlines, render them to the page
                 if (data && data.length) {
                     renderArticles(data);
@@ -64,7 +67,7 @@ $(document).ready(function () {
                 "<h4>",
                 article.summary,
                 "</h4>",
-                "<a href='" + article.url +" 'target='_blank'>",
+                "<a href='" + article.url + " 'target='_blank'>",
                 article.url,
                 "</a>",
                 "</div>",
@@ -148,5 +151,5 @@ $(document).ready(function () {
                 bootbox.alert("<h3 class='text-center m-top-80'>" + data.message + "<h3>");
             });
     }
-  
+
 });

@@ -63,7 +63,7 @@ module.exports = function(router) {
         });
     });
 
-    // Route to grab all routes associated with an article
+    // Route to grab all notes associated with an article
     router.get("/api/notes/:headline_id?", function (req, res) {
         var query = {};
         if (req.params.headline_id) {
