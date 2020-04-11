@@ -12,7 +12,7 @@ $(document).ready(function () {
     // Event listener for delete articles on home page
     $(document).on("click", ".btn.delete", handleArticleDelete);
 
-    // Once the page is ready, run the initPage function to kick things off
+    // Once the page is ready, run the kickPage function to kick things off
     kickPage();
 
 

@@ -89,7 +89,7 @@ $(document).ready(function () {
 
     function renderEmpty() {
         // This function renders some HTML to the page explaining we don't have any articles to view
-        // Using a joined array of HTML string dta because it's easier to read/change than a concatenated string
+        // Using a joined array of HTML string data because it's easier to read/change than a concatenated string
         var emptyAlert =
             $(["<div class='alert alert-warning text-center'>",
                 "<h4>Looks like we don't have any new aricles.</h4>",
@@ -194,7 +194,7 @@ $(document).ready(function () {
                 notesToRender.push(currentNote);
             }
         }
-        //Now append the notesToRender to the note-container inside the note modal
+        // Now append the notesToRender to the note-container inside the note modal
         $(".note-container").append(notesToRender);
     }
 
@@ -213,7 +213,7 @@ $(document).ready(function () {
         });
     }
 
-    // InitPage kicks everything off when the page is loaded
+    // kickPage kicks everything off when the page is loaded
     kickPage();
 
 });
